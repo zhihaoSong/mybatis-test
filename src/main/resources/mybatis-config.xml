@@ -8,7 +8,7 @@
     <properties resource="generator.properties"></properties>
 
     <typeAliases>
-        <typeAlias type="com.lx.models.Role" alias="role"/>
+        <typeAlias type="com.szh.po.Role" alias="role"/>
     </typeAliases>
     <!-- 配置mybatis运行环境 -->
     <environments default="development">

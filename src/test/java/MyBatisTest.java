@@ -14,7 +14,7 @@ public class MyBatisTest {
 
     public static void main(String[] args) throws IOException {
         //mybatis的配置文件
-        String resource = "mybatis.xml";
+        String resource = "mybatis-config.xml";
         //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
         // InputStream is = MyBatisTest.class.getClassLoader().getResourceAsStream(resource);
         InputStream is = Resources.getResourceAsStream(resource);
