@@ -14,7 +14,7 @@ public class MyBatisExample {
             role.setNote("note1");
             roleMapper.addRole(role);
             roleMapper.deleteRole(1L);
-            sqlSession.commit();
+           sqlSession.commit();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             sqlSession.rollback();

@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.Reader;
 
 import com.szh.mapper.RoleMapper;
+import com.szh.mapper.RoleMapper2;
 import com.szh.po.Role;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,13 +12,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisTest {
-
     public static void main(String[] args) throws IOException {
         //mybatis的配置文件
         String resource = "mybatis-config.xml";
         //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
-        // InputStream is = MyBatisTest.class.getClassLoader().getResourceAsStream(resource);
-        InputStream is = Resources.getResourceAsStream(resource);
+         InputStream is = MyBatisTest.class.getClassLoader().getResourceAsStream(resource);
+       // InputStream is = Resources.getResourceAsStream(resource);
         //构建sqlSession的工厂
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         //使用MyBatis提供的Resources类加载mybatis的配置文件（它也加载关联的映射文件）
@@ -34,6 +34,9 @@ public class MyBatisTest {
         RoleMapper roleMapper = session.getMapper(RoleMapper.class);
         Role role = roleMapper.getRole(1L);
         System.out.println(role);
+        RoleMapper2 roleMapper2 = session.getMapper(RoleMapper2.class);
+        Role role2 = roleMapper2.getRole(3L);
+        System.out.println(role2);
 /*        String statement = "userMapper.getUser";//映射sql的标识字符串
         //执行查询返回一个唯一user对象的sql
         User user = session.selectOne(statement, 1);

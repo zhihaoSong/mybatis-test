@@ -3,9 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
+<!--The content of element type "configuration" must match
+   "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+    reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)".-->
+
 <configuration>
-    <!-- 引入外部配置文件 -->
-    <properties resource="generator.properties"></properties>
+    <!-- 引入外部配置文件
+    1.properties 元素体内指定的属性首先被读取
+    2.然后读取 properties 元素中的 resource/url 并覆盖已读取的同名属性。
+    3.最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。 -->
+    <properties resource="generator.properties">
+        <property name="jdbc.user" value="root"/>
+        <property name="jdbc.pwd" value="ssss2222"/>
+    </properties>
 
     <typeAliases>
         <typeAlias type="com.szh.po.Role" alias="role"/>
@@ -30,5 +40,6 @@
     <mappers>
         <!-- 注册userMapper.xml文件-->
         <mapper resource="mapper/RoleMapper.xml"/>
+        <mapper class="com.szh.mapper.RoleMapper2"/>
     </mappers>
 </configuration>
