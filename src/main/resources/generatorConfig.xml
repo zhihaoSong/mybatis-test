@@ -19,7 +19,7 @@
             因而一般情况下我们都会屏蔽注释信息，可以如下配置-->
         <commentGenerator>
             <property name="suppressDate" value="false"/>
-            <property name="suppressAllComments" value="false"/>
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
         <!--jdbc的数据库连接 -->
@@ -48,14 +48,12 @@
             <!--
                         <property name="rootClass" value="com.foo.louis.Hello"/>
             -->
-            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
-            <!--
-                        <property name="trimStrings" value="true"/>
-            -->
+            <!--是否对类CHAR类型的列的数据进行trim操作  -->
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
@@ -77,7 +75,10 @@
         </javaClientGenerator>
 
         <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
-        <table tableName="tb_user" domainObjectName="User">
+        <table tableName="tb_user" domainObjectName="User"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
         </table>
     </context>
 </generatorConfiguration>

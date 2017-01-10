@@ -1,0 +1,20 @@
+CREATE TABLE `t_role` (
+`id` int(20) NOT NULL AUTO_INCREMENT,
+`role_name` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+`note` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+
+
+CREATE TABLE `tb_user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_name` varchar(50) NOT NULL  DEFAULT '' COMMENT '用户名',
+  `birthday` varchar(500) NOT NULL DEFAULT '' COMMENT '模板内容',
+  `sex` varchar(50)  NOT NULL DEFAULT '' COMMENT '性别',
+  `email` varchar(50)  NOT NULL DEFAULT '' COMMENT '邮箱',
+  `mobile` varchar(50)  NOT NULL DEFAULT '' COMMENT '手机号',
+  `note` varchar(50)  NOT NULL DEFAULT '' COMMENT '注释',
+  `create_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=330 DEFAULT CHARSET=utf8 COMMENT='短信模板- --by zhihao.song'
