@@ -1,5 +1,8 @@
 package com.szh.po;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("role")
 public class Role {
     private Long id;
     private String roleName;

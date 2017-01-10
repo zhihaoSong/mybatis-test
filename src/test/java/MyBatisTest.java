@@ -16,8 +16,8 @@ public class MyBatisTest {
         //mybatis的配置文件
         String resource = "mybatis-config.xml";
         //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
-         InputStream is = MyBatisTest.class.getClassLoader().getResourceAsStream(resource);
-       // InputStream is = Resources.getResourceAsStream(resource);
+        InputStream is = MyBatisTest.class.getClassLoader().getResourceAsStream(resource);
+        // InputStream is = Resources.getResourceAsStream(resource);
         //构建sqlSession的工厂
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         //使用MyBatis提供的Resources类加载mybatis的配置文件（它也加载关联的映射文件）
@@ -28,14 +28,14 @@ public class MyBatisTest {
         SqlSession session = sessionFactory.openSession();
         /**
          * 映射sql的标识字符串，
-         * me.gacl.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
-         * getUser是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
+         * com.szh.mapper.RoleMapper RoleMapper.xml文件中mapper标签的namespace属性的值，
+         * getRole 是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
          */
-        RoleMapper roleMapper = session.getMapper(RoleMapper.class);
+        RoleMapper2 roleMapper = session.getMapper(RoleMapper2.class);
         Role role = roleMapper.getRole(1L);
         System.out.println(role);
-        RoleMapper2 roleMapper2 = session.getMapper(RoleMapper2.class);
-        Role role2 = roleMapper2.getRole(3L);
+        RoleMapper roleMapper1 = session.getMapper(RoleMapper.class);
+        Role role2 = roleMapper1.getRoleToHandler(6L);
         System.out.println(role2);
 /*        String statement = "userMapper.getUser";//映射sql的标识字符串
         //执行查询返回一个唯一user对象的sql

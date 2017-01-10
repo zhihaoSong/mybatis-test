@@ -10,7 +10,7 @@ public class MyBatisExample {
             sqlSession = SqlSessionFactoryUtil.openSqlSession();
             RoleMapper roleMapper = sqlSession.getMapper(RoleMapper.class);
             Role role = new Role();
-            role.setRoleName("testName1");
+            role.setRoleName("宋志豪");
             role.setNote("note1");
             roleMapper.addRole(role);
             roleMapper.deleteRole(1L);
