@@ -1,15 +1,18 @@
 package com.szh.po;
 
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 
+@Alias("user")
 public class User {
     private Integer id;
 
-    private String user_name;
+    private String userName;
 
     private Date birthday;
 
-    private String sex;
+    private Sex sex;
 
     private String email;
 
@@ -21,9 +24,9 @@ public class User {
 
     private Date update_date;
 
-    public User(Integer id, String user_name, Date birthday, String sex, String email, String mobile, String note, Date create_date, Date update_date) {
+    public User(Integer id, String userName, Date birthday, Sex sex, String email, String mobile, String note, Date create_date, Date update_date) {
         this.id = id;
-        this.user_name = user_name;
+        this.userName = userName;
         this.birthday = birthday;
         this.sex = sex;
         this.email = email;
@@ -45,12 +48,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name == null ? null : user_name.trim();
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Date getBirthday() {
@@ -61,12 +64,12 @@ public class User {
         this.birthday = birthday;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex == null ? null : sex.trim();
+    public void setSex(Sex sex) {
+        this.sex = sex ;
     }
 
     public String getEmail() {
@@ -107,5 +110,20 @@ public class User {
 
     public void setUpdate_date(Date update_date) {
         this.update_date = update_date;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", note='" + note + '\'' +
+                ", create_date=" + create_date +
+                ", update_date=" + update_date +
+                '}';
     }
 }

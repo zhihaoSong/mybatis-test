@@ -26,6 +26,7 @@ public interface UserMapper {
     })
     int insert(User record);
 
+    @ResultMap("BaseResultMap")
     int insertSelective(User record);
 
     @Select({

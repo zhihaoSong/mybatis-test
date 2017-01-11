@@ -2,10 +2,14 @@
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Date;
 
 import com.szh.mapper.RoleMapper;
 import com.szh.mapper.RoleMapper2;
+import com.szh.mapper.UserMapper;
 import com.szh.po.Role;
+import com.szh.po.Sex;
+import com.szh.po.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -41,6 +45,18 @@ public class MyBatisTest {
         //执行查询返回一个唯一user对象的sql
         User user = session.selectOne(statement, 1);
         Syste.out.println(user);*/
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+        User user = new User();
+        user.setUserName("szg");
+        user.setBirthday(new Date());
+        user.setEmail("1551151530@qq.com");
+        user.setMobile("18201090152");
+        user.setCreate_date(new Date());
+        user.setSex(Sex.MALE);
+        user.setNote("你好测试是是否");
+        userMapper.insertSelective(user);
+        System.out.println(userMapper.selectByPrimaryKey(366));
+        session.commit();
     }
 
 }

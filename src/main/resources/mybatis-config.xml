@@ -25,10 +25,15 @@
     </typeAliases>
 
     <typeHandlers>
-        <typeHandler javaType="string"  jdbcType="VARCHAR" handler="com.szh.typeHandler.MyStringTypeHandler"/>
+        <typeHandler javaType="string" jdbcType="VARCHAR" handler="com.szh.typeHandler.MyStringTypeHandler"/>
+        <!--
+                <typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.szh.po.Sex"/>
+        -->
+        <typeHandler handler="com.szh.typeHandler.SexEnumTypeHandler" javaType="com.szh.po.Sex"/>
+
     </typeHandlers>
     <!-- 配置mybatis运行环境 -->
-    <environments default="development">
+    <environments default="BONCP">
         <environment id="development">
             <!-- type="JDBC" 代表使用JDBC的提交和回滚来管理事务 -->
             <transactionManager type="JDBC">
@@ -45,10 +50,32 @@
                 <property name="password" value="${jdbc.pwd}"/>
             </dataSource>
         </environment>
+
+        <environment id="BONCP">
+            <transactionManager type="JDBC">
+                <property name="autoCommit" value="false"/>
+            </transactionManager>
+            <dataSource type="JNDI">
+                <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+                <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1/yourdb"/>
+                <property name="username" value="${jdbc.user}"/>
+                <property name="password" value="${jdbc.pwd}"/>
+                <property name="idleConnectionTestPeriod" value="60"/>
+                <property name="idleMaxAge" value="240"/>
+                <property name="maxConnectionsPerPartition" value="30"/>
+                <property name="minConnectionsPerPartition" value="10"/>
+                <property name="partitionCount" value="3"/>
+                <property name="acquireIncrement" value="5"/>
+                <property name="statementsCacheSize" value="100"/>
+                <property name="releaseHelperThreads" value="3"/>
+            </dataSource>
+        </environment>
+
     </environments>
     <mappers>
         <!-- 注册userMapper.xml文件-->
         <mapper resource="mapper/RoleMapper.xml"/>
         <mapper class="com.szh.mapper.RoleMapper2"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
