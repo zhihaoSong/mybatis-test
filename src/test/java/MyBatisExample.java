@@ -13,6 +13,8 @@ public class MyBatisExample {
             role.setRoleName("宋志豪");
             role.setNote("note1");
             roleMapper.addRole(role);
+            //roleMapper.addRoleParam("song先生","好人啊");
+            roleMapper.findRoleByAnnotation("song先生","好人啊");
             roleMapper.deleteRole(1L);
            sqlSession.commit();
         } catch (Exception ex) {
