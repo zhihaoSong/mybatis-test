@@ -55,27 +55,47 @@
             <transactionManager type="JDBC">
                 <property name="autoCommit" value="false"/>
             </transactionManager>
-            <dataSource type="JNDI">
-                <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-                <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1/yourdb"/>
+            <dataSource type="com.szh.DataSource.BoneCPDataSourceFactory">
+                <property name="driverClass" value="${jdbc.driver}"/>
+                <property name="jdbcUrl" value="${jdbc.connectionURL}"/>
                 <property name="username" value="${jdbc.user}"/>
                 <property name="password" value="${jdbc.pwd}"/>
-                <property name="idleConnectionTestPeriod" value="60"/>
-                <property name="idleMaxAge" value="240"/>
-                <property name="maxConnectionsPerPartition" value="30"/>
-                <property name="minConnectionsPerPartition" value="10"/>
-                <property name="partitionCount" value="3"/>
-                <property name="acquireIncrement" value="5"/>
-                <property name="statementsCacheSize" value="100"/>
-                <property name="releaseHelperThreads" value="3"/>
+                <property name="minConnectionsPerPartition" value="2"/>
+                <property name="maxConnectionsPerPartition" value="4"/>
+                <property name="acquireIncrement" value="2"/>
+                <property name="partitionCount" value="2"/>
+                <property name="idleConnectionTestPeriod" value="1"/>
+                <property name="idleMaxAge" value="10"/>
+                <property name="connectionTestStatement" value="/* ping */ SELECT 1"/>
+                <property name=" releaseHelperThreads" value="0"/>
+                <property name="logStatementsEnabled" value="false"/>
+                <property name="acquireRetryDelay" value="7000"/>
+                <property name="acquireRetryAttempts" value="3"/>
+                <property name="lazyInit" value="false"/>
+                <property name="disableJMX" value="true"/>
+                <property name="queryExecuteTimeLimit" value="0"/>
+                <property name="poolAvailabilityThreshold" value="2"/>
+                <property name="connectionTimeout" value="20000"/>
+                <property name="serviceOrder" value="LIFO"/>
             </dataSource>
         </environment>
 
     </environments>
+    <!--DB_VENDOR是启动mybatis内部注册的策略器-->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="Adaptive Server Enterprise" value="sybase"/>
+        <property name="MySQL" value="mysql"/>
+    </databaseIdProvider>
     <mappers>
         <!-- 注册userMapper.xml文件-->
         <mapper resource="mapper/RoleMapper.xml"/>
         <mapper class="com.szh.mapper.RoleMapper2"/>
         <mapper resource="mapper/UserMapper.xml"/>
+        <!--
+                <mapper url="/home/zhihaosong/workspace/mybatis-test/src/main/resources/mapper/RoleMapper.xml"/>
+        -->
     </mappers>
 </configuration>

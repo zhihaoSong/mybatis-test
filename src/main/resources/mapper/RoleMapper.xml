@@ -9,7 +9,7 @@
 
     </resultMap>
     <select id="getRoleToHandler" parameterType="long"
-            resultMap="roleMap">
+            resultMap="roleMap" databaseId="mysql">
         select id, role_name , note from t_role where id=#{id}
     </select>
     <select id="getRole" parameterType="long"

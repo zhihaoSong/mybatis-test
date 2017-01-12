@@ -1,7 +1,6 @@
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.util.Date;
 
 import com.szh.mapper.RoleMapper;
@@ -10,7 +9,6 @@ import com.szh.mapper.UserMapper;
 import com.szh.po.Role;
 import com.szh.po.Sex;
 import com.szh.po.User;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;

@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Clinton Begin
+ * @author zhihao.song
  */
 public class SexEnumTypeHandler implements TypeHandler<Sex> {
 
