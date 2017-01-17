@@ -8,21 +8,37 @@
         <result column="note" property="note" typeHandler="com.szh.typeHandler.MyStringTypeHandler"/>
 
     </resultMap>
+    <sql id="role_columns">
+        id, role_name as roleName, note
+    </sql>
+    <sql id="someinclude">
+        select * from
+        <include refid="${tableName}"/>
+    </sql>
     <select id="getRoleToHandler" parameterType="long"
             resultMap="roleMap" databaseId="mysql">
         select id, role_name , note from t_role where id=#{id}
     </select>
     <select id="getRole" parameterType="long"
             resultType="role">
-        select id, role_name as roleName, note from t_role where id=#{id}
+        select
+        <include refid="role_columns"/>
+        from t_role where id=#{id}
     </select>
+
+    <select id="getRoleToPre" parameterType="long"
+            resultType="role">
+        <include refid="someinclude">AD</include>
+        from t_role r where id=#{id}
+    </select>
+
     <select id="findRoleByAnnotation"
             resultType="role">
         select id, role_name as roleName, note from t_role
         where role_name like concat('%',#{roleName},'%') and note like concat('%',#{note},'%');
     </select>
 
-    <insert id="addRole" parameterType="role">
+    <insert id="addRole" parameterType="role" useGeneratedKeys="true" keyProperty="id">
             insert into t_role (role_name,note) values (#{roleName},#{note})
         </insert>
     <insert id="addRoleParam">
@@ -31,4 +47,15 @@
     <delete id="deleteRole" parameterType="long">
             delete from t_role where id = #{id}
         </delete>
+
+    <insert id="addRoleGEKeys" parameterType="role">
+        <!-- <selectKey keyProperty="id" resultType="long" order="AFTER">
+             select if(max(id) is null ,1,max(id)+2 ) as newId from t_role
+         </selectKey>-->
+        <!--  <selectKey keyProperty="id" resultType="long">
+              select LAST_INSERT_ID() AS id
+          </selectKey>-->
+
+        insert into t_role (role_name,note) values (#{roleName},#{note})
+    </insert>
 </mapper>

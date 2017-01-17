@@ -12,11 +12,15 @@ public class MyBatisExample {
             Role role = new Role();
             role.setRoleName("宋志豪");
             role.setNote("note1");
-            roleMapper.addRole(role);
+            System.out.println(role.toString());
+            roleMapper.addRoleGEKeys(role);
             //roleMapper.addRoleParam("song先生","好人啊");
-            roleMapper.findRoleByAnnotation("song先生","好人啊");
+            Role role1= roleMapper.getRole(11l);
             roleMapper.deleteRole(1L);
-           sqlSession.commit();
+            sqlSession.commit();
+            System.out.println(role1);
+            System.out.println(role.toString());
+
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
             sqlSession.rollback();
